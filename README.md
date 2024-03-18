@@ -6,6 +6,8 @@
 
 The Forests have an essential role for the ecosystem of our planet, in this work we will address one of the factors that directly impact the integrity of forests, the forest fires. We will discuss the use of technologies such as machine learning and convolutional neural networks as a method of prevention and identification of fires, thus enabling the fight against fires and minimizing these impacts. We will use three convolutional neural network models, which are SqueezeNet, VGG-16 and ResNet-50 which will be submitted to training and subsequently evaluated to determine the best scenario for each of them.
 
+Link to database: https://www.kaggle.com/datasets/warcoder/flamevision-dataset-for-wildfire-classification
+
 # Bibliography
 
 * ALEXANDROV, D. et al. Analysis of machine learning methods for wildfire security monitoring with an unmanned aerial vehicles. In: IEEE. 2019 24th conference of open innovations association (FRUCT). [S.l.], 2019.p.3–9.
