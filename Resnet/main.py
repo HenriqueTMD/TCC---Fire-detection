@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 from torch.utils.data import Dataset
 from PIL import Image
 import matplotlib.pyplot as plt
+from torchvision.transforms.functional import rotate
 
 class block(nn.Module):
     def __init__(self, in_channels, out_channels, identity_downsample=None, stride=1):
@@ -120,14 +121,21 @@ class CustomDataset(Dataset):
         return images
 
     def __len__(self):
-        return len(self.images)
+        return len(self.images) * 4  # Each image will be rotated 4 times
 
     def __getitem__(self, idx):
-        img_path, class_idx = self.images[idx]
+        img_idx = idx // 4  # Index of the original image
+        rotation_angle = idx % 4  # 0, 1, 2, or 3 for each rotation (0°, 90°, 180°, 270°)
+
+        img_path, class_idx = self.images[img_idx]
         image = Image.open(img_path).convert('RGB')
+
+        # Rotate the image based on rotation_angle
+        rotated_image = rotate(image, rotation_angle * 90)
+
         if self.transform:
-            image = self.transform(image)
-        return image, class_idx
+            rotated_image = self.transform(rotated_image)
+        return rotated_image, class_idx
 
 def main():
     device = torch.device("cuda")
